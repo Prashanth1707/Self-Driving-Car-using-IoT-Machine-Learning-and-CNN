@@ -1,84 +1,144 @@
 ## Arduino Programming 
-	const int EnableL = 5;
-	const int HighL = 6;
-	const int LowL = 7;
-	const int EnableR = 10;
-	const int HighR = 8;
-	const int LowR = 9;
-	
-	void setup() {
-	    // LEFT SIDE MOTOR
-	    pinMode(EnableL, OUTPUT);
-	    pinMode(HighL, OUTPUT);
-	    pinMode(LowL, OUTPUT);
-	
-	    // RIGHT SIDE MOTOR
-	    pinMode(EnableR, OUTPUT);
-	    pinMode(HighR, OUTPUT);
-	    pinMode(LowR, OUTPUT);
-	}
-	
-	void Forward() {
-	    // LEFT MOTOR FORWARD
-	    digitalWrite(HighL, LOW);
-	    digitalWrite(LowL, HIGH);
-	    analogWrite(EnableL, 255); // Full speed
-	
-	    // RIGHT MOTOR FORWARD
-	    digitalWrite(HighR, LOW);
-	    digitalWrite(LowR, HIGH);
-	    analogWrite(EnableR, 255); // Full speed
-	}
-	
-	void Left() {
-	    // LEFT MOTOR BACKWARD
-	    digitalWrite(HighL, HIGH);
-	    digitalWrite(LowL, LOW);
-	    analogWrite(EnableL, 255); // Full speed
-	
-	    // RIGHT MOTOR FORWARD
-	    digitalWrite(HighR, LOW);
-	    digitalWrite(LowR, HIGH);
-	    analogWrite(EnableR, 255); // Full speed
-	}
-	
-	void Backward() {
-	    // LEFT MOTOR BACKWARD
-	    digitalWrite(HighL, HIGH);
-	    digitalWrite(LowL, LOW);
-	    analogWrite(EnableL, 255); // Full speed
-	
-	    // RIGHT MOTOR BACKWARD
-	    digitalWrite(HighR, HIGH);
-	    digitalWrite(LowR, LOW);
-	    analogWrite(EnableR, 255); // Full speed
-	}
-	
-	void Right() {
-	    // LEFT MOTOR FORWARD
-	    digitalWrite(HighL, LOW);
-	    digitalWrite(LowL, HIGH);
-	    analogWrite(EnableL, 255); // Full speed
-	
-	    // RIGHT MOTOR BACKWARD
-	    digitalWrite(HighR, HIGH);
-	    digitalWrite(LowR, LOW);
-	    analogWrite(EnableR, 255); // Full speed
-	}
-	
-	void loop() {
-	    Forward();  // Move Forward
-	    delay(1000); // Delay for 1 second
-	
-	    Left();     // Turn Left
-	    delay(1000); // Delay for 1 second
-	
-	    Backward(); // Move Backward
-	    delay(1000); // Delay for 1 second
-	
-	    Right();    // Turn Right
-	    delay(1000); // Delay for 1 second
-	}
+// Defining motor control pins with real-world names
+
+// Front Left Wheel (FLW)
+const int FLW_Speed = 5;     
+const int FLW_Forward = 6;   
+const int FLW_Backward = 7;   
+
+// Front Right Wheel (FRW)
+const int FRW_Speed = 10;    
+const int FRW_Forward = 8; 
+const int FRW_Backward = 9;   
+
+// Back Left Wheel (BLW)
+const int BLW_Speed = 3;     
+const int BLW_Forward = 2;   
+const int BLW_Backward = 4;  
+
+// Back Right Wheel (BRW)
+const int BRW_Speed = 11;    
+const int BRW_Forward = 12; 
+const int BRW_Backward = 13; 
+
+void setup() {
+    // Front Left Wheel Setup
+    pinMode(FLW_Speed, OUTPUT);
+    pinMode(FLW_Forward, OUTPUT);
+    pinMode(FLW_Backward, OUTPUT);
+
+    // Front Right Wheel Setup
+    pinMode(FRW_Speed, OUTPUT);
+    pinMode(FRW_Forward, OUTPUT);
+    pinMode(FRW_Backward, OUTPUT);
+
+    // Back Left Wheel Setup
+    pinMode(BLW_Speed, OUTPUT);
+    pinMode(BLW_Forward, OUTPUT);
+    pinMode(BLW_Backward, OUTPUT);
+
+    // Back Right Wheel Setup
+    pinMode(BRW_Speed, OUTPUT);
+    pinMode(BRW_Forward, OUTPUT);
+    pinMode(BRW_Backward, OUTPUT);
+}
+
+// Function to move the car forward
+void moveForward() {
+    digitalWrite(FLW_Forward, HIGH);
+    digitalWrite(FLW_Backward, LOW);
+    analogWrite(FLW_Speed, 255); 
+
+    digitalWrite(FRW_Forward, HIGH);
+    digitalWrite(FRW_Backward, LOW);
+    analogWrite(FRW_Speed, 255); 
+
+    digitalWrite(BLW_Forward, HIGH);
+    digitalWrite(BLW_Backward, LOW);
+    analogWrite(BLW_Speed, 255); 
+
+    digitalWrite(BRW_Forward, HIGH);
+    digitalWrite(BRW_Backward, LOW);
+    analogWrite(BRW_Speed, 255);
+}
+
+// Function to move the car backward
+void moveBackward() {
+    digitalWrite(FLW_Forward, LOW);
+    digitalWrite(FLW_Backward, HIGH);
+    analogWrite(FLW_Speed, 255); 
+
+    digitalWrite(FRW_Forward, LOW);
+    digitalWrite(FRW_Backward, HIGH);
+    analogWrite(FRW_Speed, 255); 
+
+    digitalWrite(BLW_Forward, LOW);
+    digitalWrite(BLW_Backward, HIGH);
+    analogWrite(BLW_Speed, 255); 
+
+    digitalWrite(BRW_Forward, LOW);
+    digitalWrite(BRW_Backward, HIGH);
+    analogWrite(BRW_Speed, 255); 
+}
+
+// Function to turn the car left
+void turnLeft() {
+    digitalWrite(FLW_Forward, LOW);
+    digitalWrite(FLW_Backward, HIGH);
+    analogWrite(FLW_Speed, 255);
+
+    digitalWrite(FRW_Forward, HIGH);
+    digitalWrite(FRW_Backward, LOW);
+    analogWrite(FRW_Speed, 255); 
+
+    digitalWrite(BLW_Forward, LOW);
+    digitalWrite(BLW_Backward, HIGH);
+    analogWrite(BLW_Speed, 255); 
+
+    digitalWrite(BRW_Forward, HIGH);
+    digitalWrite(BRW_Backward, LOW);
+    analogWrite(BRW_Speed, 255);
+}
+
+// Function to turn the car right
+void turnRight() {
+    digitalWrite(FLW_Forward, HIGH);
+    digitalWrite(FLW_Backward, LOW);
+    analogWrite(FLW_Speed, 255); 
+
+    digitalWrite(FRW_Forward, LOW);
+    digitalWrite(FRW_Backward, HIGH);
+    analogWrite(FRW_Speed, 255); 
+
+    digitalWrite(BLW_Forward, HIGH);
+    digitalWrite(BLW_Backward, LOW);
+    analogWrite(BLW_Speed, 255); 
+
+    digitalWrite(BRW_Forward, LOW);
+    digitalWrite(BRW_Backward, HIGH);
+    analogWrite(BRW_Speed, 255); 
+}
+
+void loop() {
+    moveForward(); 
+    delay(1000);   
+
+    turnLeft();    
+    delay(1000); 
+
+    moveBackward();
+    delay(1000);    
+
+    turnRight();  
+    delay(1000);   
+}
+
+
+
+
+
+
+
 
 
 
@@ -143,6 +203,283 @@
 	    Camera.release(); // Release the camera
 	    return 0; 
 	}
+
+
+
+
+
+
+
+
+
+
+// Obstacle Detection & Avoidance using Ultrasonic Sensor
+
+#define TRIG_PIN 3  // Ultrasonic Sensor TRIG pin
+#define ECHO_PIN 4  // Ultrasonic Sensor ECHO pin
+#define MOTOR_LEFT_FORWARD 6
+#define MOTOR_LEFT_BACKWARD 7
+#define MOTOR_RIGHT_FORWARD 8
+#define MOTOR_RIGHT_BACKWARD 9
+#define SAFE_DISTANCE 200 // Distance threshold in cm
+
+void setup() {
+    pinMode(TRIG_PIN, OUTPUT);
+    pinMode(ECHO_PIN, INPUT);
+    pinMode(MOTOR_LEFT_FORWARD, OUTPUT);
+    pinMode(MOTOR_LEFT_BACKWARD, OUTPUT);
+    pinMode(MOTOR_RIGHT_FORWARD, OUTPUT);
+    pinMode(MOTOR_RIGHT_BACKWARD, OUTPUT);
+    Serial.begin(9600);
+}
+
+long getDistance() {
+    digitalWrite(TRIG_PIN, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG_PIN, LOW);
+    long duration = pulseIn(ECHO_PIN, HIGH);
+    return duration * 0.034 / 2; // Convert to cm
+}
+
+void moveForward() {
+    digitalWrite(MOTOR_LEFT_FORWARD, HIGH);
+    digitalWrite(MOTOR_LEFT_BACKWARD, LOW);
+    digitalWrite(MOTOR_RIGHT_FORWARD, HIGH);
+    digitalWrite(MOTOR_RIGHT_BACKWARD, LOW);
+}
+
+void stopMotors() {
+    digitalWrite(MOTOR_LEFT_FORWARD, LOW);
+    digitalWrite(MOTOR_LEFT_BACKWARD, LOW);
+    digitalWrite(MOTOR_RIGHT_FORWARD, LOW);
+    digitalWrite(MOTOR_RIGHT_BACKWARD, LOW);
+}
+
+void turnLeft() {
+    digitalWrite(MOTOR_LEFT_FORWARD, LOW);
+    digitalWrite(MOTOR_LEFT_BACKWARD, HIGH);
+    digitalWrite(MOTOR_RIGHT_FORWARD, HIGH);
+    digitalWrite(MOTOR_RIGHT_BACKWARD, LOW);
+    delay(500);
+    stopMotors();
+}
+
+void turnRight() {
+    digitalWrite(MOTOR_LEFT_FORWARD, HIGH);
+    digitalWrite(MOTOR_LEFT_BACKWARD, LOW);
+    digitalWrite(MOTOR_RIGHT_FORWARD, LOW);
+    digitalWrite(MOTOR_RIGHT_BACKWARD, HIGH);
+    delay(500);
+    stopMotors();
+}
+
+void loop() {
+    long distance = getDistance();
+    Serial.print("Distance: ");
+    Serial.println(distance);
+    
+    if (distance < SAFE_DISTANCE) {
+        stopMotors();
+        delay(500);
+        turnLeft(); // Turn left if an obstacle is detected
+    } else {
+        moveForward();
+    }
+    delay(100);
+}
+
+
+
+
+
+
+
+
+##Traffic Sign Detection using Python
+
+import cv2
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+
+# Load pre-trained traffic sign recognition model
+model = load_model('traffic_sign_model.h5')
+
+# Load class labels
+classes = {0: 'Speed Limit 20', 1: 'Speed Limit 50', 2: 'Stop', 3: 'Yield', 4: 'No Entry'}
+
+# Initialize camera
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+    
+    # Preprocess image
+    img = cv2.resize(frame, (32, 32))
+    img = np.expand_dims(img, axis=0) / 255.0  # Normalize
+    
+    # Predict traffic sign
+    prediction = model.predict(img)
+    class_id = np.argmax(prediction)
+    label = classes[class_id]
+    
+    # Display result
+    cv2.putText(frame, label, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    cv2.imshow('Traffic Sign Detection', frame)
+    
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
+
+
+
+
+
+
+
+##V2V communicatin code
+
+import paho.mqtt.client as mqtt
+import json
+import time
+
+# MQTT Broker (can be a local Raspberry Pi or cloud service like HiveMQ)
+BROKER = "broker.hivemq.com"
+PORT = 1883
+TOPIC_SEND = "self_driving_car/v2v"
+TOPIC_RECEIVE = "self_driving_car/v2v"
+
+# Car Information (Simulated Data)
+car_id = "Car_1"
+speed = 40  # km/h
+position = {"latitude": 12.9716, "longitude": 77.5946}  # Example coordinates
+obstacle_detected = False
+
+# Callback function when a message is received
+def on_message(client, userdata, message):
+    received_data = json.loads(message.payload.decode())
+    print(f"🚗 Data Received from {received_data['car_id']}: Speed {received_data['speed']} km/h, Position {received_data['position']}, Obstacle: {received_data['obstacle']}")
+
+# Connect to MQTT broker
+client = mqtt.Client()
+client.on_message = on_message
+client.connect(BROKER, PORT)
+
+client.subscribe(TOPIC_RECEIVE)
+client.loop_start()
+
+while True:
+    # Simulate sending car data every 2 seconds
+    data = {
+        "car_id": car_id,
+        "speed": speed,
+        "position": position,
+        "obstacle": obstacle_detected
+    }
+    
+    client.publish(TOPIC_SEND, json.dumps(data))
+    print(f"📡 Data Sent: {data}")
+    
+    time.sleep(2)  # Send data every 2 seconds
+
+client.loop_stop()
+client.disconnect()
+
+
+
+
+
+
+
+##PATH PLANING 
+
+import heapq
+
+# Define the grid map (0 = Free Path, 1 = Obstacle)
+grid = [
+    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 1, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 1, 1, 1, 1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+]
+
+# Define start and goal positions
+start = (0, 0)  # Starting position (row, col)
+goal = (7, 9)   # Destination position (row, col)
+
+# Movement directions (up, down, left, right, diagonals)
+directions = [(0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (-1, -1), (1, -1), (-1, 1)]
+
+# A* Algorithm for Path Planning
+def astar(grid, start, goal):
+    rows, cols = len(grid), len(grid[0])
+    open_list = []
+    heapq.heappush(open_list, (0, start))  # Priority queue
+    came_from = {}  # Store path
+    g_score = {start: 0}  # Cost from start
+    f_score = {start: heuristic(start, goal)}  # Estimated cost to goal
+
+    while open_list:
+        _, current = heapq.heappop(open_list)
+
+        if current == goal:
+            return reconstruct_path(came_from, current)
+
+        for dx, dy in directions:
+            neighbor = (current[0] + dx, current[1] + dy)
+
+            if 0 <= neighbor[0] < rows and 0 <= neighbor[1] < cols and grid[neighbor[0]][neighbor[1]] == 0:
+                tentative_g_score = g_score[current] + 1
+
+                if neighbor not in g_score or tentative_g_score < g_score[neighbor]:
+                    came_from[neighbor] = current
+                    g_score[neighbor] = tentative_g_score
+                    f_score[neighbor] = tentative_g_score + heuristic(neighbor, goal)
+                    heapq.heappush(open_list, (f_score[neighbor], neighbor))
+
+    return None  # No path found
+
+# Heuristic Function (Manhattan Distance)
+def heuristic(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
+
+# Reconstruct Path
+def reconstruct_path(came_from, current):
+    path = [current]
+    while current in came_from:
+        current = came_from[current]
+        path.append(current)
+    return path[::-1]
+
+# Find the best path
+path = astar(grid, start, goal)
+
+# Display the grid with the path
+if path:
+    for r, c in path:
+        grid[r][c] = 2  # Mark the path with '2'
+    
+    for row in grid:
+        print(" ".join(str(cell) for cell in row))
+else:
+    print("🚨 No path found!")
+
+
+
+
+
+
 
 
 ## Final Code (Lane End detection & U-Turn Implementation) 
